@@ -1,0 +1,1 @@
+export type timespan = number & { readonly '': unique symbol };

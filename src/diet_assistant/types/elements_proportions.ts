@@ -1,0 +1,1 @@
+export type elements_proportions = { proteins: number, fat: number, carbohydrates: number }

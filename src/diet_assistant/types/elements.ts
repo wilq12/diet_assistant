@@ -1,0 +1,1 @@
+export type elements = { proteins: number, fats: number, carbohydrates: number }
