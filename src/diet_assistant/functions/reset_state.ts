@@ -1,6 +1,7 @@
-import { set_state } from '../state';
-import { default_state } from '../default_state';
+import { default_state } from '../state/default_state';
+import { set_state, state } from '../state/state';
 
 export function reset_state() {
-    set_state(default_state)
+    // reset whole state but keep diet_ingredients
+    set_state({...default_state, diet_ingredients: state.diet_ingredients})
 }

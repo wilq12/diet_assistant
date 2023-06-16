@@ -13,7 +13,9 @@ import { timestamp_now } from 'src/diet_assistant/functions/timestamp_now';
 import { timespan_hours } from 'src/diet_assistant/functions/timespan_hours';
 import { timestamp_increase } from 'src/diet_assistant/functions/timestamp_increase';
 import { diet_log_remove_entry } from 'src/diet_assistant/functions/diet_log_remove_entry';
-import { state } from 'src/diet_assistant/state';
+import { set_state, state } from 'src/diet_assistant/state/state';
+import { add_diet_ingredient } from 'src/diet_assistant/functions/add_diet_ingredient';
+import { get_diet_ingredient_quantities } from 'src/diet_assistant/functions/get_diet_ingredient_quantities';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +24,9 @@ import { state } from 'src/diet_assistant/state';
 })
 export class AppComponent {
   title = 'diet-assistant';
-
+  new_diet_ingredient = '{"name":"Example","elements":{"proteins":1,"fats":2,"carbohydrates":3,"sugars":4},"portion_grams":5}'
   current_demand!: elements
+  state_string = ''
   constructor() {
     load_state()
     setInterval(() => {
@@ -37,6 +40,7 @@ export class AppComponent {
   get_current_demand = get_current_demand
   initialize_new_day = initialize_new_day
   reset_state = reset_state
+  set_state = set_state
   get_suggseted_ingredients = get_suggested_ingredients
   get_suggested_consumption = get_suggested_consumption
   timestamp_now = timestamp_now
@@ -44,6 +48,10 @@ export class AppComponent {
   timestamp_increase = timestamp_increase
   remove_diet_log_entry = diet_log_remove_entry
   JSON = JSON
+  add_diet_ingredient = add_diet_ingredient
+  get_diet_ingredient_quantities = get_diet_ingredient_quantities
+
+
   get state() {
     return state
   } 

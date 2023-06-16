@@ -1,10 +1,17 @@
 <button (click)="initialize_new_day()">Wakey wakey!</button>
 <h1>Current demand: {{JSON.stringify(current_demand)}}</h1>
-<h2>Diet ingredients:</h2>
-<div *ngFor="let diet_ingredient of get_suggseted_ingredients()" style="margin-top: 15px">
-  <div [ngClass]="{hidden: get_suggested_consumption(diet_ingredient) < state.diet_ingredient_quantities[0]}" style="font-weight: bold;">{{JSON.stringify(diet_ingredient)}}</div> 
-  <button class="quantity_button" [ngClass]="{hidden: get_suggested_consumption(diet_ingredient) < diet_ingredient_quantity}" *ngFor="let diet_ingredient_quantity of state.diet_ingredient_quantities" (click)="add_diet_log_entry(new_diet_log_entry(diet_ingredient, diet_ingredient_quantity))">{{diet_ingredient_quantity }}g</button>
-</div>
 <h2>Diet log:</h2>
 <div [ngClass]="{log_entry:true, new: timestamp_increase(log_entry.timestamp, timespan_hours(0.4)) > timestamp_now()}" *ngFor="let log_entry of state.diet_log;let i = index">{{JSON.stringify(log_entry)}} <button (click)="remove_diet_log_entry(log_entry)">X</button></div>
+<h2>Diet ingredients:</h2>
+<div *ngFor="let diet_ingredient of get_suggseted_ingredients()" style="margin-top: 15px">
+  <div [ngClass]="{hidden: get_suggested_consumption(diet_ingredient) < get_diet_ingredient_quantities(diet_ingredient)[0]}" style="font-weight: bold;">{{JSON.stringify(diet_ingredient)}}</div> 
+  <button class="quantity_button" [ngClass]="{hidden: get_suggested_consumption(diet_ingredient) < diet_ingredient_quantity}" *ngFor="let diet_ingredient_quantity of get_diet_ingredient_quantities(diet_ingredient)" (click)="add_diet_log_entry(new_diet_log_entry(diet_ingredient, diet_ingredient_quantity))">{{diet_ingredient_quantity }}g</button>
+</div>
+<div>
+  <input style="width: 100%;" [(ngModel)]="new_diet_ingredient" required>
+  <button (click)="add_diet_ingredient(new_diet_ingredient)">Add element</button>
+</div>
 <button (click)="reset_state()">Reset</button>
+<button>Load</button>
+<button>Save</button>
+<textarea [value]="JSON.stringify(state, null, '\t')"></textarea>

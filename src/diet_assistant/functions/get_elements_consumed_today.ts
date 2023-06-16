@@ -1,6 +1,6 @@
 import { elements } from '../types/elements';
 import { new_elements } from './new_elements';
-import { state } from '../state';
+import { state } from '../state/state';
 
 export function get_elements_consumed_today(): elements {
     let elements = new_elements(0, 0, 0);

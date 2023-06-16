@@ -1,4 +1,4 @@
-import { set_state } from '../state'
+import { set_state } from "../state/state"
 
 export function load_state() {
     let s = localStorage.getItem('state')
